@@ -1,0 +1,35 @@
+Source: module-build-service
+Section: perl
+Priority: optional
+Maintainer: Michael Alan Dorman <mdorman@ironicdesign.com>
+Build-Depends: debhelper (>= 8)
+Build-Depends-Indep: libclass-load-perl,
+ libdist-zilla-perl,
+ libfile-slurp-perl,
+ libipc-run-perl,
+ liblog-any-perl,
+ libmoo-perl,
+ libpath-class-perl,
+ libtry-tiny-perl,
+ perl-modules (>= 5.8.8)
+Standards-Version: 3.9.3
+Homepage: http://search.cpan.org/dist/Module-Build-Service/
+
+Package: libmodule-build-service-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libclass-load-perl,
+ libdist-zilla-perl,
+ libfile-slurp-perl,
+ libipc-run-perl,
+ liblog-any-perl,
+ libmoo-perl,
+ libpath-class-perl,
+ libtry-tiny-perl,
+ perl-modules
+Description: Manage services necessary for automated or interactive testing
+ This subclass of Module::Build attempts to make it easy to start
+ various support services that the testing environment may need to
+ have access to.  Browse the Module::Build::Service::* namespace for
+ supported services, or use one of the existing definitions as a
+ template to create your own.
