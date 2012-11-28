@@ -105,7 +105,7 @@ sub DEMOLISH {
     my ($self) = @_;
     $log->tracef ("Checking for pre_stop hooks for %s", $self->service_name);
     $self->run_hook ("stop", "pre");
-    $log->trace ("Stopping service %s", $self->service_name);
+    $log->tracef ("Stopping service %s", $self->service_name);
     $self->stop_service;
     $log->tracef ("Checking for post_stop hooks for %s", $self->service_name);
     $self->run_hook ("stop", "post");
