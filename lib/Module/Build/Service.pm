@@ -186,7 +186,7 @@ Called transparently when you do C<./Build test>.
 sub ACTION_test {
     my ($self, @args) = @_;
     $self->__wrapper ("SUPER::ACTION_test", @args);
-};
+}
 
 =method interact
 
