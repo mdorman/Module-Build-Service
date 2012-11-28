@@ -202,7 +202,12 @@ Called when you do C<./Build interact>.
 sub ACTION_interact {
     my ($self, @args) = @_;
     $self->__wrapper ("interact", @args);
-};
+}
+
+sub interact {
+    print STDERR "Press enter to continue";
+    my $junk = <STDIN>;
+}
 
 # __wrapper is the heart of the routines we expose.  It will start
 # required and/or recommended services before executing the named method
