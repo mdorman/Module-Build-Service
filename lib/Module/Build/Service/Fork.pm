@@ -113,8 +113,14 @@ sub start_service {
     my ($self) = @_;
     $log->tracef ("%s service starting", $self->service_name);
     try {
-        my $logfile = $self->log =~ m,^/, ? $self->log : File::Spec->catfile ($self->_builder->mbs_log_dir, $self->log);
-        my $handle = start $self->command, \undef, '>&', $logfile or die $?;
+        my @output = (\undef);
+        if (my $logfile = $self->log) {
+            $log->tracef ("%s base logfile is %s", $self->service_name, $logfile);
+            $logfile = File::Spec->catfile ($self->_builder->mbs_log_dir, $self->log) unless substr $logfile, 0, 1 eq '/';
+            push @output, '>>', $logfile, '2>', $logfile;
+        }
+        $log->tracef ("%s output is %s", $self->service_name, \@output);
+        my $handle = start $self->command, @output or die $?;
         $self->_set_handle ($handle);
         $log->tracef ("%s service started", $self->service_name);
     } catch {
